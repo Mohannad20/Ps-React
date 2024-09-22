@@ -47,9 +47,11 @@ export default function Todo() {
             {tasks.map((el,index) => <li key={index}>
                 {editId !== index ? (
                 <div className='lists'>
-                    <label style={{ textDecoration: el.done ? 'line-through' : 'none' }}>
+                    <label style={{ opacity: el.done ? 0.6 : 1,textDecoration: el.done ? 'line-through' : 'none' }}>
                     <input type="checkbox" checked={el.done} onClick={() => toggleTodo(index)}/>
-                    {el.text} 
+                    <div className="task-text">
+                        {el.text}
+                    </div>
                     </label>
                 </div>
                 ):
@@ -60,8 +62,8 @@ export default function Todo() {
                 </div>
                 )}
                 <div className='icons'>
-                <LucideEdit2 id='icons' onClick={() => handleEditBtn(index)}/>
-                    <Trash2 id='icons' onClick={() => handleDelBtn(index)}/>
+                    <LucideEdit2 id='icons' size={20} onClick={() => handleEditBtn(index)}/>
+                    <Trash2 id='icons' size={20} onClick={() => handleDelBtn(index)}/>
                 </div>
             </li> )}
         </ul>
