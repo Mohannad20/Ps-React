@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import {LucideEdit, LucideEdit2, Trash2} from 'lucide-react'
+import {Ligature, LightbulbIcon, LucideEdit, LucideEdit2, MoonStar, SunDim, Trash2} from 'lucide-react'
 
 export default function Todo() {
     const [tasks, setTasks] = useState([])
     const [newTask, setNewTask] = useState('')
     const [editId, SetEditId] = useState(null)
     const [editTask, setEditTask] = useState('')
+    const [darkMode, setDarkMode] = useState(false)
+
     const handleAddBtn = () => {
         if (newTask.trim()) {
             setTasks(t => [...tasks, {text: newTask, done: false}])
@@ -35,7 +37,18 @@ export default function Todo() {
             tasks.map((task,i) => i === index ? {...task, done: !task.done} : task)
         )
     }
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode)   
+        document.body.classList.toggle('dark-mode')
+    }
   return (
+    <>
+    <div onClick={toggleDarkMode}>
+
+    {darkMode? <SunDim size={20} id='modeIcon'/> : <MoonStar id='modeIcon' size={18}/>}
+    </div>
+    
+    
     <div className='todo-list'>
         <h1>Todo List</h1>
         <div>
@@ -47,7 +60,7 @@ export default function Todo() {
             {tasks.map((el,index) => <li key={index}>
                 {editId !== index ? (
                 <div className='lists'>
-                    <label style={{ opacity: el.done ? 0.6 : 1,textDecoration: el.done ? 'line-through' : 'none' }}>
+                    <label style={{ opacity: el.done ? 0.6 : 1,textDecoration: el.done ? 'line-through' : 'none',transition: 'color 0.3s, text-decoration 0.3s' }}>
                     <input type="checkbox" checked={el.done} onClick={() => toggleTodo(index)}/>
                     <div className="task-text">
                         {el.text}
@@ -68,5 +81,6 @@ export default function Todo() {
             </li> )}
         </ul>
     </div>
+    </>
   )
 }
