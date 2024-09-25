@@ -1,1 +1,1 @@
-# Some Simple projects using React :FaReact:
+# Some simple projects using React 
