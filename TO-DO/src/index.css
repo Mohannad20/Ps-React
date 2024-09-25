@@ -7,10 +7,10 @@
 }
 
 .dark-mode {
-  --Primary-Color: #494d6b; /* Cosmic deep blue */
-  --Secondary-Color: #A29BFE; /* Nebula purple */
+  --Primary-Color: #7c81a3; /* Cosmic deep blue */
+  --Secondary-Color: #0B0D1D; /* Nebula purple */
   --Accent-Color: #50C9CE; /* Galaxy teal */
-  --Highlight-Color: #FFCF6F; /* Comet yellow */
+  --Highlight-Color: #171e3a; /* Comet yellow */
 }
 
 body {
@@ -178,7 +178,7 @@ h1:hover {
 }
 
 #btns:hover {
-  background-color: var(--Complementary-Accent);
+  background-color: var(--Secondary-Color);
   color: var(--Primary-Color);
   transform: scale(1.05);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);

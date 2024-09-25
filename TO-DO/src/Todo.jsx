@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Ligature, LightbulbIcon, LucideEdit, LucideEdit2, MoonStar, SunDim, Trash2} from 'lucide-react'
+import {LucideEdit2, MoonStar, SunDim, Trash2} from 'lucide-react'
 
 export default function Todo() {
     const [tasks, setTasks] = useState([])
@@ -10,7 +10,7 @@ export default function Todo() {
 
     const handleAddBtn = () => {
         if (newTask.trim()) {
-            setTasks(t => [...tasks, {text: newTask, done: false}])
+            setTasks(t => [...t, {text: newTask, done: false}])
             setNewTask('')
         }
     }
