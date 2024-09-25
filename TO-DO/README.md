@@ -4,10 +4,10 @@ This is a minimalistic, yet powerful Todo List app built with HTML, CSS, and Jav
 ## Features
 - **🌗 Dark/Light Mode Toggle**: Switch between dark and light themes to match your environment and mood.
 - **📋 CRUD Functionality**:
-- Create new todos quickly and easily.
-- Read and review all of your tasks at a glance.
-- Update existing tasks to reflect changes in real time.
-- Delete tasks that are no longer needed.
+    - Create new todos quickly and easily.
+    - Read and review all of your tasks at a glance.
+    - Update existing tasks to reflect changes in real time.
+    - Delete tasks that are no longer needed.
 - **✅ Task Completion**: Check off tasks as you complete them with the built-in checkbox.
 - **🖊 Edit & Delete Options**: Modify or remove tasks with a single click using the intuitive pencil and trash icons.
 ## How It Works
