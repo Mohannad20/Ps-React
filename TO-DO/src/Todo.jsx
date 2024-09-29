@@ -1,16 +1,54 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import {LucideEdit2, MoonStar, SunDim, Trash2} from 'lucide-react'
 
+const intialState = {
+    tasks : [],
+    editId : null,
+    editTask : ''
+}
+
+const Reducer = (state, action) => {
+    switch (action.type) {
+        case 'ADD_TASK':
+            return{
+                ...state, tasks : [...state.tasks, {text : action.payload, done : false }]
+            }
+        case 'DELETE' :
+            return {
+                ...state, tasks : state.tasks.filter((_,i) => i !== action.payload)
+            }
+        case 'SET_ID':
+            return {
+                ...state, editId : action.payload.index, editTask : action.payload.taskText
+            }
+        case 'SET_EDIT_TASK':
+            return{
+                ...state, editTask : action.payload
+            }
+        case 'SAVE':
+            return{
+                ...state, tasks : state.tasks.map((task, i) => 
+                i === action.payload.index ? {...task, text: action.payload.editTask } : task
+            ) , editId : null, editTask : ''
+            }
+    }
+}
+
 export default function Todo() {
-    const [tasks, setTasks] = useState([])
+    // const [tasks, setTasks] = useState([])
     const [newTask, setNewTask] = useState('')
-    const [editId, SetEditId] = useState(null)
-    const [editTask, setEditTask] = useState('')
+    // const [editId, SetEditId] = useState(null)
+    // const [editTask, setEditTask] = useState('')
     const [darkMode, setDarkMode] = useState(false)
+    const [state, dispatch] = useReducer(Reducer, intialState)
 
     const handleAddBtn = () => {
+        // if (newTask.trim()) {
+        //     setTasks(t => [...t, {text: newTask, done: false}])
+        //     setNewTask('')
+        // }
         if (newTask.trim()) {
-            setTasks(t => [...t, {text: newTask, done: false}])
+            dispatch({type : 'ADD_TASK', payload : newTask})
             setNewTask('')
         }
     }
@@ -18,19 +56,23 @@ export default function Todo() {
         setNewTask(event.target.value)
     }
     const handleDelBtn = (index) => {
-        setTasks(tasks.filter((_,i) => i !== index))
+        // index(tasks.filter((_,i) => i !== index))
+        dispatch({type : 'DELETE' , payload: index})
     }
     const handleEditBtn = (index) => {
-        SetEditId(index)
-        setEditTask(tasks[index].text)
+        // SetEditId(index)
+        // setEditTask(tasks[index].text)
+        dispatch({type : 'SET_ID', payload : {index, taskText : state.tasks[index].text}})
     }
-    const handleSavebtn = (index) => {
-        if (editTask.trim()) {
-            
-            const editedTasks = tasks.map((task, i) => i === index ? {...task, text: editTask} : task)
-            setTasks(editedTasks)
+    const handleSaveBtn = (index) => {
+        // if (editTask.trim()) {
+        //     const editedTasks = tasks.map((task, i) => i === index ? {...task, text: editTask} : task)
+        //     setTasks(editedTasks)
+        // }
+        // SetEditId(null)
+        if (state.editTask.trim()) {
+            dispatch({type : 'SAVE', payload : {index, editTask : state.editTask}})
         }
-        SetEditId(null)
     }
     const toggleTodo = (index) => {
         setTasks(
@@ -57,8 +99,8 @@ export default function Todo() {
         </div>
 
         <ul>
-            {tasks.map((el,index) => <li key={index}>
-                {editId !== index ? (
+            {state.tasks.map((el,index) => <li key={index}>
+                {state.editId !== index ? (
                 <div className='lists'>
                     <label style={{ opacity: el.done ? 0.6 : 1,textDecoration: el.done ? 'line-through' : 'none',transition: 'color 0.3s, text-decoration 0.3s' }}>
                     <input type="checkbox" checked={el.done} onClick={() => toggleTodo(index)}/>
@@ -70,8 +112,8 @@ export default function Todo() {
                 ):
                 (
                 <div className='lists'>
-                    <input type="text" value={editTask} onChange={(e) => setEditTask(e.target.value)}  />
-                    <button onClick= {()=> handleSavebtn(index, el)} id='btns'>Save</button>
+                    <input type="text" value={state.editTask} onChange={(e) => dispatch({type : 'SET_EDIT_TASK', payload : e.target.value})}  />
+                    <button onClick= {()=> handleSaveBtn(index, el)} id='btns'>Save</button>
                 </div>
                 )}
                 <div className='icons'>
