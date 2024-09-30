@@ -1,18 +1,23 @@
 :root {
-  --Primary-Color: #0B0D1D; /* Deep space black */
-  --Secondary-Color: #7289DA; /* Starlight blue */
-  --Accent-Color: #A29BFE; /* Nebula purple */
-  --Highlight-Color: #50C9CE; /* Galaxy teal */
-  --Complementary-Accent: #FFCF6F; /* Comet yellow */
+  --Primary-Color: #D1D1D1; 
+  --Secondary-Color: #333333; 
+  --Accent-Color: #39FF14; 
+  --Highlight-Color: #FF2079; 
+  --Complementary-Accent: #FFFFFF; 
 }
 
 .dark-mode {
-  --Primary-Color: #7c81a3; /* Cosmic deep blue */
-  --Secondary-Color: #0B0D1D; /* Nebula purple */
-  --Accent-Color: #50C9CE; /* Galaxy teal */
-  --Highlight-Color: #171e3a; /* Comet yellow */
+  --Primary-Color: #333333; 
+  --Secondary-Color: #D1D1D1; 
+  --Accent-Color: #FF2079; 
+  --Highlight-Color: #39FF14; 
 }
 
+@property --rotate{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
 body {
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
@@ -24,6 +29,50 @@ body {
   background-color: var(--Primary-Color);
   transition: color 0.5s, background-color 0.5s;
 }
+
+.todo-list {
+  border: 1px solid var(--Secondary-Color);
+  background-color: var(--Primary-Color);
+  border-radius: 16px; 
+  width: 45rem;
+  height: 25rem;
+  margin: 50px;
+  position: relative;
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+  padding: 3px;
+}
+.todo-list::after{
+  filter: blur(40px);
+}
+.todo-list::after,
+.todo-list::before{
+  content: "";
+  position: absolute;
+  border-radius: 16px;
+  background-image: linear-gradient(var(--rotate),var(--Secondary-Color),var(--Highlight-Color));
+  width: 104%;
+  height: 102%;
+  z-index: -1;
+  left: -2%;
+  top: -1%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.todo-list:hover::after,
+  .todo-list:hover::before{
+  opacity: 0.7;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0%{
+      --rotate : 0deg
+  }100%{
+    --rotate : 360deg
+  }
+}
+
 
 #modeIcon {
   position: fixed;
@@ -42,19 +91,6 @@ body {
 #modeIcon:hover {
   opacity: 0.7;
 }
-
-.todo-list {
-  border: 1px solid var(--Secondary-Color);
-  width: 40rem;
-  height: fit-content;
-  text-align: center;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-  padding-bottom: 3rem;
-  border-radius: 16px;
-}
-
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -125,7 +161,7 @@ h1:hover {
 
 .todo-list > ul li label input[type=checkbox] {
   margin: 0.5rem 0.5rem;
-  accent-color: var(--Accent-Color);
+  accent-color: var(--Highlight-Color);
   width: 1.5rem;
   height: 1.5rem;
 }
