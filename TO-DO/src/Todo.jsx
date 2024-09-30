@@ -31,22 +31,19 @@ const Reducer = (state, action) => {
                 i === action.payload.index ? {...task, text: action.payload.editTask } : task
             ) , editId : null, editTask : ''
             }
+        case 'TOGGLE_TODO':
+            return{
+                ...state, tasks : state.tasks.map((task, i) => i === action.payload ? {...task, done: !task.done} : task)
+            }
     }
 }
 
 export default function Todo() {
-    // const [tasks, setTasks] = useState([])
     const [newTask, setNewTask] = useState('')
-    // const [editId, SetEditId] = useState(null)
-    // const [editTask, setEditTask] = useState('')
     const [darkMode, setDarkMode] = useState(false)
     const [state, dispatch] = useReducer(Reducer, intialState)
 
     const handleAddBtn = () => {
-        // if (newTask.trim()) {
-        //     setTasks(t => [...t, {text: newTask, done: false}])
-        //     setNewTask('')
-        // }
         if (newTask.trim()) {
             dispatch({type : 'ADD_TASK', payload : newTask})
             setNewTask('')
@@ -56,28 +53,18 @@ export default function Todo() {
         setNewTask(event.target.value)
     }
     const handleDelBtn = (index) => {
-        // index(tasks.filter((_,i) => i !== index))
         dispatch({type : 'DELETE' , payload: index})
     }
     const handleEditBtn = (index) => {
-        // SetEditId(index)
-        // setEditTask(tasks[index].text)
         dispatch({type : 'SET_ID', payload : {index, taskText : state.tasks[index].text}})
     }
     const handleSaveBtn = (index) => {
-        // if (editTask.trim()) {
-        //     const editedTasks = tasks.map((task, i) => i === index ? {...task, text: editTask} : task)
-        //     setTasks(editedTasks)
-        // }
-        // SetEditId(null)
         if (state.editTask.trim()) {
             dispatch({type : 'SAVE', payload : {index, editTask : state.editTask}})
         }
     }
     const toggleTodo = (index) => {
-        setTasks(
-            tasks.map((task,i) => i === index ? {...task, done: !task.done} : task)
-        )
+        dispatch({type: 'TOGGLE_TODO' , payload : index})
     }
     const toggleDarkMode = () => {
         setDarkMode(!darkMode)   
@@ -86,10 +73,8 @@ export default function Todo() {
   return (
     <>
     <div onClick={toggleDarkMode}>
-
     {darkMode? <SunDim size={20} id='modeIcon'/> : <MoonStar id='modeIcon' size={18}/>}
     </div>
-    
     
     <div className='todo-list'>
         <h1>Todo List</h1>
