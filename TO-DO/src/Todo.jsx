@@ -4,7 +4,8 @@ import {LucideEdit2, MoonStar, SunDim, Trash2} from 'lucide-react'
 const intialState = {
     tasks : [],
     editId : null,
-    editTask : ''
+    editTask : '',
+    darkMode : false
 }
 
 const Reducer = (state, action) => {
@@ -35,12 +36,18 @@ const Reducer = (state, action) => {
             return{
                 ...state, tasks : state.tasks.map((task, i) => i === action.payload ? {...task, done: !task.done} : task)
             }
+        case 'TOGGLE_DARK_MODE':
+            return{
+                ...state, darkMode : action.payload
+            }
+        default:
+            return state;
     }
 }
 
 export default function Todo() {
     const [newTask, setNewTask] = useState('')
-    const [darkMode, setDarkMode] = useState(false)
+    // const [darkMode, setDarkMode] = useState(false)
     const [state, dispatch] = useReducer(Reducer, intialState)
 
     const handleAddBtn = () => {
@@ -67,13 +74,14 @@ export default function Todo() {
         dispatch({type: 'TOGGLE_TODO' , payload : index})
     }
     const toggleDarkMode = () => {
-        setDarkMode(!darkMode)   
+        // setDarkMode(!darkMode)   
+        dispatch({type: 'TOGGLE_DARK_MODE', payload : !state.darkMode})
         document.body.classList.toggle('dark-mode')
     }
   return (
     <>
     <div onClick={toggleDarkMode}>
-    {darkMode? <SunDim size={20} id='modeIcon'/> : <MoonStar id='modeIcon' size={18}/>}
+    {state.darkMode? <SunDim size={20} id='modeIcon'/> : <MoonStar id='modeIcon' size={18}/>}
     </div>
     
     <div className='todo-list'>
