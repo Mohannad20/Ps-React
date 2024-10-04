@@ -2,7 +2,7 @@ import React from 'react'
 import NavbarApp from './navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from '../components/home';
-import { AddProduct } from '../components/addProduct';
+import { cart } from '../components/cart';
 import { UpdateProduct } from '../components/updateProduct';
 
 
@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/UpdateProduct/:id' element={<UpdateProduct/>}/>
-        <Route path='/AddProduct' element={<AddProduct/>}/>
+        <Route path='/cart' element={<cart/>}/>
       </Routes>
       </BrowserRouter>
     </div>
