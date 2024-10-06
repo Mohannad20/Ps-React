@@ -1,8 +1,18 @@
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
-export const INCREMENT_PRODUCT = 'INCREMENT_PRODUCT';
-export const DECREMENT_PRODUCT = 'DECREMENT_PRODUCT';
+export const INCREMENT_QUANTITY = 'INCREMENT_QUANTITY';
+export const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
+export const ADD_TO_CART='ADD_TO_CART';
+export const REMOVE_FROM_CART='REMOVE_FROM_CART';
+
+export  const addToCart=(product)=>{
+  return {type:ADD_TO_CART,payload:product}
+}
+
+export  const removeFromCart=(id)=>{
+  return {type:REMOVE_FROM_CART,payload:id}
+}
 
 export const addProduct = (product) => ({
   type: ADD_PRODUCT,
@@ -19,11 +29,11 @@ export const deleteProduct = (id) => ({
   payload: id,
 });
 export const incrementQuantity = (id) => ({
-  type: INCREMENT_PRODUCT,
+  type: INCREMENT_QUANTITY,
   payload: id,
 });
 export const decrementQuantity = (id) => ({
-  type: DECREMENT_PRODUCT,
+  type: DECREMENT_QUANTITY,
   payload: id,
 });
 

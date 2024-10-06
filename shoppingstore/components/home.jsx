@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProduct } from "../redux/productActions";
+import { deleteProduct } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { ProductCard } from "./productCard";
 
@@ -14,11 +14,11 @@ export const Home = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex justify-between items-center mb-4">
+    <div className="container mx-auto py-8 ">
+      <div className="flex justify-between items-center bg-black mb-4">
         <h1 className="text-3xl font-bold">Shopping Store</h1>
         <button
-          onClick={() => navigate("/add-product")}
+          onClick={() => navigate("/AddProduct")}
           className="bg-blue-500 text-black py-2 px-4 rounded"
         >
           Add Product

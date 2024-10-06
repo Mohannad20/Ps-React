@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, INCREMENT_PRODUCT, DECREMENT_PRODUCT } from './productActions';
+import { ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT} from './actions';
 import faker from 'faker';
 
 const initialState = {
@@ -31,17 +31,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: state.products.filter((product) => product.id !== action.payload),
       };
-    case INCREMENT_PRODUCT:
-      return{
-        ...state,
-        products: state.products.map((product) => product.id === action.payload ? {...product, quantity : quantity+1} : product)
-      };
-    case DECREMENT_PRODUCT:
-      return{
-        ...state,
-        products: state.products.map((product) => product.id === action.payload ? {...product, quantity : quantity+1} : product).filter(product=> product.quantity>0)
-
-      }
+    
     default:
       return state;
   }

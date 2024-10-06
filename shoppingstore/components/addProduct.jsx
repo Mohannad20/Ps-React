@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/productActions";
+import { addProduct } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
