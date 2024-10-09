@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProduct } from "../redux/actions";
+import { addProduct, deleteProduct } from "../redux/actions"; // Assuming you have a addProduct action to store products in Redux
 import { useNavigate } from "react-router-dom";
 import { ProductCard } from "./productCard";
 
@@ -9,13 +9,25 @@ export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Fetch products from API when the component mounts
+  useEffect(() => {
+    fetch('https://dummyjson.com/products')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(addProduct(data.products)); // Assuming 'addProduct' action stores products in Redux
+        console.log(data.products)
+      })
+      
+      .catch((error) => console.error("Error fetching products:", error));
+  }, [dispatch]);
+
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
   };
 
   return (
     <div className="container mx-auto py-8 ">
-      <div className="flex justify-between items-center bg-black mb-4">
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Shopping Store</h1>
         <button
           onClick={() => navigate("/AddProduct")}
@@ -25,11 +37,14 @@ export const Home = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} onDelete={handleDelete} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} onDelete={handleDelete} />
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
       </div>
     </div>
   );
-}
-
+};

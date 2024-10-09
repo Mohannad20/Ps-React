@@ -1,18 +1,10 @@
 import { ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT} from './actions';
-import faker from 'faker';
 
 const initialState = {
-  products: Array.from({ length: 8 }, () => ({
-    id: faker.datatype.uuid(),
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    description: faker.commerce.productDescription(),
-    image: faker.image.fashion(),
-    quantity : 0
-  })),
+  products : []
 };
 
-const productReducer = (state = initialState, action) => {
+export const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return {
@@ -36,5 +28,3 @@ const productReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default productReducer;

@@ -1,23 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { decrementQuantity, incrementQuantity } from "../redux/actions";
+import { Minus, PencilIcon, Plus, Trash } from 'lucide-react';
 
-export const ProductCard = ({ onDelete }) => {
+export const ProductCard = ({ product, onDelete }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const products=useSelector(state=>state.products.products);
-
-  const { id } = useParams(); // Assuming you're using a product id from the URL
-
-  // Find the product from the Redux store
-  // const product = useSelector((state) =>
-  //   state.cart.cart.find((item) => item.id === parseInt(id))
-  // );
-
-  // if (!product) {
-  //   return <div>Product not found</div>;
-  // }
 
   const handleIncrement = () => {
     dispatch(incrementQuantity(product.id));
@@ -30,42 +19,49 @@ export const ProductCard = ({ onDelete }) => {
   };
 
   return (
-    <div className="border border-black rounded-lg p-4">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto">
       <img
-        src={product.image}
-        alt={product.name}
-        className="h-40 w-full object-cover rounded"
+        src={product.thumbnail || "/placeholder.svg?height=200&width=300"}
+        alt={product.title}
+        className="w-full h-48 object-cover"
       />
-      <h2 className="text-xl font-bold mt-2">{product.name}</h2>
-      <p className="text-gray-700 mt-1">${product.price.toFixed(2)}</p>
-      <p className="text-sm text-gray-500 mt-1">{product.description}</p>
-      <div className="flex justify-between items-center mt-4">
-        <button
-          onClick={() => navigate(`/update-product/${product.id}`)}
-          className="bg-black text-white py-1 px-4 rounded"
-        >
-          Update
-        </button>
-        <button
-          onClick={() => onDelete(product.id)}
-          className="bg-red-500 text-white py-1 px-4 rounded"
-        >
-          Delete
-        </button>
-        <div className="flex items-center space-x-2">
+      <div className="p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">{product.title}</h2>
+        <p className="text-3xl font-semibold text-indigo-600 mb-4">
+          ${product.price}
+        </p>
+        <p className="text-gray-600 mb-4">{product.description}</p>
+        <div className="flex items-center justify-between mb-4">
           <button
-            onClick={handleIncrement}
-            className="bg-green-500 text-white py-1 px-4 rounded"
+            onClick={() => navigate(`/update-product/${product.id}`)}
+            className="flex items-center justify-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out"
           >
-            +
+            <PencilIcon />
+            Update
           </button>
-          <span className="text-lg">{product.quantity}</span>
+          <button
+            onClick={() => onDelete(product.id)}
+            className="flex items-center justify-center bg-red-500 text-white py-2 mx-2 px-4 rounded-md hover:bg-red-600 transition duration-300 ease-in-out"
+          >
+            <Trash />
+            Delete
+          </button>
+        </div>
+        <div className="flex items-center justify-center space-x-4">
           <button
             onClick={handleDecrement}
-            className="bg-yellow-500 text-white py-1 px-4 rounded"
+            className="bg-gray-200 text-gray-800 py-2 px-4 rounded-full hover:bg-gray-300 transition duration-300 ease-in-out"
             disabled={product.quantity <= 1}
           >
-            -
+            {/* <MinusIcon className="h-5 w-5" /> */}
+            <Minus/>
+          </button>
+          <span className="text-2xl font-semibold text-gray-800">{product.quantity}</span>
+          <button
+            onClick={handleIncrement}
+            className="bg-gray-200 text-gray-800 py-2 px-4 rounded-full hover:bg-gray-300 transition duration-300 ease-in-out"
+          >
+            <Plus />
           </button>
         </div>
       </div>
