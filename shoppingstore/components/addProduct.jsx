@@ -5,24 +5,63 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
 export const AddProduct = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  // const [name, setName] = useState("");
+  // const [price, setPrice] = useState("");
+  const [productInfos, setProductInfos] = useState({
+    // id: uuid(),
+    name: "",
+    price: null,
+    description: "",
+    image: "",
+  });
+  const [errors, setErrors] = useState({})
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const {name, value,} = e.target
+    setProductInfos({...productInfos, [name] : value})
+  } 
+  const handleValidate = () => {
+    let isValid = true
+    const newErrors = {}
+
+    if (!productInfos.name.trim()) {
+      newErrors.name = 'please, give the product a name'
+      isValid = false
+    }
+    if (!productInfos.price || productInfos.price <= 0) {
+      newErrors.price = 'The product should have a price'
+      isValid = false
+    }
+    if (!productInfos.description.trim()) {
+      newErrors.description = 'Description is required'
+      isValid = false
+    }
+    if (!productInfos.image.trim()) {
+      newErrors.image = 'invalid image'
+      isValid = false
+    }
+    setErrors(newErrors)
+    return isValid
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addProduct({
-        id: uuid(),
-        name,
-        price,
-        description,
-        image: "",
-      })
-    );
-    navigate("/");
+    // dispatch(
+    //   addProduct({
+    //     id: uuid(),
+    //     name,
+    //     price,
+    //     description,
+    //     image: "",
+    //   })
+    // );
+    setErrors({})
+    if (handleValidate()) { 
+      navigate("/");
+      console.log('successfully submited');
+      dispatch(addProduct(productInfos))
+    }
   };
 
   return (
@@ -36,49 +75,67 @@ export const AddProduct = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="product-name" className="sr-only">
+              <label htmlFor="product-name" className="font-semibold">
                 Product Name
               </label>
               <input
                 id="product-name"
                 name="name"
                 type="text"
-                required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Product Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={productInfos.name}
+                onChange={handleChange}
               />
+            {errors.name && <p className="text-red-600">{errors.name}</p> }
             </div>
             <div>
-              <label htmlFor="price" className="sr-only">
+              <label htmlFor="price" className="font-semibold">
                 Price
               </label>
               <input
                 id="price"
                 name="price"
                 type="number"
-                required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={productInfos.price}
+                onChange={handleChange}
               />
+            {errors.price && <p className="text-red-600">{errors.price}</p> }
+
             </div>
             <div>
-              <label htmlFor="description" className="sr-only">
+              <label htmlFor="description" className="font-semibold">
                 Description
               </label>
               <textarea
                 id="description"
                 name="description"
-                required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Description"
                 rows="4"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={productInfos.description}
+                onChange={handleChange}
               />
+            {errors.description && <p className="text-red-600">{errors.description}</p> }
+            </div>
+            <div>
+              <label htmlFor="image" className="font-semibold">
+                Image
+              </label>
+              <input
+                id="image"
+                name="image"
+                type="url"
+                alt="image"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 "
+                placeholder="image url"
+                value={productInfos.image}
+                onChange={handleChange}
+              />
+            {errors.image && <p className="text-red-600">{errors.image}</p> }
+
             </div>
           </div>
 

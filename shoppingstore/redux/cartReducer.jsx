@@ -7,20 +7,29 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_TO_CART:
-            const product=state.cart.find(p=>p.id===action.payload.id);
-            if(product){
-            return {...state,cart:state.cart.map((p)=>p.id===action.payload.id?{...p,quantity:p.quantity+1}:p)};
+            const productExist = state.cart.find(p => p.id === action.payload.id);
+            if(productExist){
+            return {
+                ...state,
+                cart : state.cart.map((p) => p.id === action.payload.id ? {...p, quantity : p.quantity+1} : p)};
             }else{
-            return {...state,cart:[...state.cart,{...action.payload,quantity:1}]};
+            return {
+                ...state,
+                cart : [...state.cart, {...action.payload, quantity : 1}]};
             }
-
         case REMOVE_FROM_CART:
-        return {...state,cart:state.cart.filter((p)=>p.id!==action.payload)};
+            return {
+                ...state,
+                cart : state.cart.filter((p) => p.id !== action.payload)};
         case  INCREMENT_QUANTITY:
-        return {...state,cart:state.cart.map((p)=>p.id===action.payload?{...p,quantity:p.quantity+1}:p)};
+            return {
+                ...state,
+                cart : state.cart.map((p) => p.id === action.payload ? {...p, quantity : p.quantity+1} : p)};
         case DECREMENT_QUANTITY:
-        return {...state,cart:state.cart.map((p)=>p.id===action.payload?{...p,quantity:p.quantity-1}:p).filter(p=>p.quantity>0)};
+            return {
+                ...state,
+                cart : state.cart.map((p) => p.id === action.payload ? {...p, quantity :p.quantity-1} : p).filter(p => p.quantity > 0)};
         default:
-        return state;
+            return state;
      }
 }

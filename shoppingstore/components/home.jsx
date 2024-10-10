@@ -14,12 +14,13 @@ export const Home = () => {
     fetch('https://dummyjson.com/products')
       .then((res) => res.json())
       .then((data) => {
-        dispatch(addProduct(data.products)); // Assuming 'addProduct' action stores products in Redux
-        console.log(data.products)
+        dispatch(addProduct(data.products));  // Dispatch the products array to Redux
+        console.log(data.products);
       })
-      
       .catch((error) => console.error("Error fetching products:", error));
   }, [dispatch]);
+  
+  
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));

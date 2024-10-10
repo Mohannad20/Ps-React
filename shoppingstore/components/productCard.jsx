@@ -21,7 +21,7 @@ export const ProductCard = ({ product, onDelete }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto">
       <img
-        src={product.thumbnail || "/placeholder.svg?height=200&width=300"}
+        src={product.images || "/placeholder.svg?height=200&width=300"}
         alt={product.title}
         className="w-full h-48 object-cover"
       />
