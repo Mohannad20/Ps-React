@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
 export const AddProduct = () => {
-  // const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
   const [productInfos, setProductInfos] = useState({
     // id: uuid(),
     name: "",
@@ -47,15 +45,6 @@ export const AddProduct = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(
-    //   addProduct({
-    //     id: uuid(),
-    //     name,
-    //     price,
-    //     description,
-    //     image: "",
-    //   })
-    // );
     setErrors({})
     if (handleValidate()) { 
       navigate("/");
@@ -65,7 +54,7 @@ export const AddProduct = () => {
   };
 
   return (
-    <div className="min-h-screen min-w-screen bg-red-100 flex justify-center pt-3 ">
+    <div className="min-h-screen min-w-screen bg-gray-100 flex justify-center pt-3 ">
       <div className="max-w-md w-full gap-2 space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">

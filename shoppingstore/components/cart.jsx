@@ -7,7 +7,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="container mx-auto w-3/4 mt-2">
+    <div className="container mx-auto w-3/4 mt-2 spa">
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
       {cart.length === 0 ? (
         <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
@@ -30,7 +30,7 @@ export const Cart = () => {
               <tbody>
                 {cart.map((item) => (
                   <tr key={item.id} className="border-b">
-                    <td className="py-2 px-4">{item.name}</td>
+                    <td className="py-2 px-4">{item.title}</td>
                     <td className="py-2 px-4">${item.price.toFixed(2)}</td>
                     <td className="py-2 px-4">
                       <div className="flex items-center space-x-2">

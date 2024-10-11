@@ -15,12 +15,16 @@ export const Home = () => {
       .then((res) => res.json())
       .then((data) => {
         dispatch(addProduct(data.products));  // Dispatch the products array to Redux
-        console.log(data.products);
+        // console.log(data.products);
       })
       .catch((error) => console.error("Error fetching products:", error));
   }, [dispatch]);
   
-  
+
+  useEffect(() => {
+    console.log("Products from Redux Store:", products);  // Log products to check for duplicates
+  }, [products]);
+
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
@@ -28,7 +32,7 @@ export const Home = () => {
 
   return (
     <div className="container mx-auto py-8 ">
-      <div className="flex justify-between items-center mb-4">
+      {/* <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Shopping Store</h1>
         <button
           onClick={() => navigate("/AddProduct")}
@@ -36,15 +40,23 @@ export const Home = () => {
         >
           Add Product
         </button>
-      </div>
+      </div> */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} onDelete={handleDelete} />
-          ))
-        ) : (
-          <p>No products available</p>
-        )}
+      {products.length > 0 ? (
+        products.map((product) => (
+          <ProductCard key={product.id} product={product} onDelete={handleDelete} />
+        ))
+      ) : (
+        <p>No products available</p>
+      )}
+      {/* {products.length > 0 ? (
+      products.map((product, index) => (
+        <ProductCard key={`${product.id}-${index}`} product={product} onDelete={handleDelete} />
+      ))
+    ) : (
+      <p>No products available</p>
+    )} */}
+
       </div>
     </div>
   );
