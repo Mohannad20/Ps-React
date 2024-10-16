@@ -17,7 +17,7 @@ const App = () => {
         {/* <Route path='/UpdateProduct/:id' element={<UpdateProduct/>}/> */}
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/AddProduct' element={<AddProduct/>}/>
-        <Route path='/singleProduct' element={<SingleProduct/>} />
+        <Route path='/singleProduct/:id' element={<SingleProduct/>} />
       </Routes>
       </BrowserRouter>
     </div>

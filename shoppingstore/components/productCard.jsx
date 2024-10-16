@@ -108,12 +108,12 @@ export const ProductCard = ({ product, onDelete }) => {
               </button>
 
               <button
-                // onClick={handleAdd}
+                onClick={() => navigate(`/singleProduct/${product.id}`)}
                 className="flex items-center justify-center transform focus:scale-90 duration-800 translate-y-3 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300 ease-in-out"
               >
-                <Link to='/singleProduct'>
+                {/* <Link to='/singleProduct'> */}
                 More details
-                </Link>
+                {/* </Link> */}
               </button>
             </div>
           </>
