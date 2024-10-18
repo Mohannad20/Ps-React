@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 
 export const AddProduct = () => {
   const [productInfos, setProductInfos] = useState({
-    // id: uuid(),
+    id: uuid(),
     name: "",
     price: null,
     description: "",
