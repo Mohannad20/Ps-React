@@ -6,16 +6,22 @@ const initialState = {
 
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_PRODUCT:
-      // Avoid duplicating products by checking if they already exist in the state
-      const newProducts = action.payload.filter(newProduct => {
-        return !state.products.some(existingProduct => existingProduct.id === newProduct.id);
-      });
+    case ADD_PRODUCT: {
+      const newProducts = Array.isArray(action.payload) ? action.payload : [action.payload];  // Handle if action.payload is a single product or an array
+
+      // Filter out duplicate products
+      const mergedProducts = [
+        ...state.products, 
+        ...newProducts.filter(newProduct => 
+          !state.products.some(existingProduct => existingProduct.id === newProduct.id)
+        )
+      ];
 
       return {
         ...state,
-        products: [...state.products, ...newProducts],  // Only add new, unique products
+        products: mergedProducts,
       };
+    }
     case UPDATE_PRODUCT:
       return {
         ...state,
