@@ -22,7 +22,7 @@ const NavbarApp = () => {
             <Link className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium relative" to='/cart'>
               Cart
               {totalQuantity > 0 && (
-                <span className="absolute top-0 left-11 inline-block bg-red-600 text-white rounded-md text-xs w-5 h-5 flex justify-center items-center">
+                <span className="absolute top-0 left-11 bg-red-600 text-white rounded-md text-xs w-5 h-5 flex justify-center items-center">
                   {totalQuantity}
                 </span>
               )}
