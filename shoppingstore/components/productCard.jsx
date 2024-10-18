@@ -11,7 +11,6 @@ export const ProductCard = ({ product, onDelete }) => {
   const cart = useSelector(state => state.cart.cart);
   const [isReadMore, setIsReadMore] = useState(false)
 
-  // Check if the product exists in the cart
   const productInCart = cart.find(item => item.id === product.id);
 
   const handleIncrement = () => {
@@ -37,7 +36,7 @@ export const ProductCard = ({ product, onDelete }) => {
 
   return (
     <div className="bg-white h-fit hover:bg-indigo-50 transition duration-300  shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto border-gray-400 border">
-      
+
       <img
         src={product.images || "/placeholder.svg?height=200&width=300"}
         alt={product.title}
@@ -50,18 +49,21 @@ export const ProductCard = ({ product, onDelete }) => {
         </p>
         <div className="flex">
           <div className="flex items-center space-x-1">
-          <div className='flex'>
-              {Array(5).fill(null).map((_,pos) => (
-                <Star key={pos} className={` ${pos+1 > Math.round(product.rating)? 'fill-gray-400 text-gray-400' : 'fill-yellow-400 text-yellow-400'} `}/>
+            <div className='flex'>
+              {Array(5).fill(null).map((_, pos) => (
+                <Star key={pos} className={` ${pos + 1 > Math.round(product.rating) ? 'fill-gray-400 text-gray-400' : 'fill-yellow-400 text-yellow-400'} `} />
               ))}
-          </div>
-          <span className="font-bold">{product.rating}</span>
-          <span className="text-muted-foreground">({product.reviews.length} reviews)</span>
+            </div>
+            {product.rating && <>
+              <span className="font-bold">{product.rating}</span>
+              <span className="text-muted-foreground">({product.reviews.length} reviews)</span>
+            </>
+            }
           </div>
         </div>
-        <p className="text-gray-600 mb-4">{isReadMore? product.description :
-        `${product.description.substring(0, 80)}... `}
-        <span onClick={handleReadMore} className="cursor-pointer text-indigo-400">{isReadMore? 'Read less' : 'Read more'}</span>
+        <p className="text-gray-600 mb-4">{isReadMore ? product.description :
+          `${product.description.substring(0, 80)}... `}
+          <span onClick={handleReadMore} className="cursor-pointer text-indigo-600 underline">{isReadMore ? 'Read less' : 'Read more'}</span>
         </p>
         {productInCart ? (
           <>
