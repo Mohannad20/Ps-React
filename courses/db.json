@@ -1,0 +1,17 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "title": "React for Beginners",
+        "description": "Learn the basics of React.",
+        "instructor": "John Doe"
+      },
+      {
+        "id": 2,
+        "title": "Redux Toolkit Mastery",
+        "description": "Advanced Redux techniques with Redux Toolkit.",
+        "instructor": "Jane Smith"
+      }
+    ]
+  }
+  

@@ -1,10 +1,22 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './comp/navbar'
+import Home from './comp/home'
+// import { Button } from "./components/ui/button"
+
+
 
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline text-red-500">
-      Hello world!d
-    </h1>
+    <>
+    <BrowserRouter>
+    <Navbar/>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+    </Routes>
+    </BrowserRouter>
+    {/* <Button>btn</Button> */}
+    </>
   )
 }
 
