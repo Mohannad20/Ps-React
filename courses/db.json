@@ -11,6 +11,66 @@
         "title": "Redux Toolkit Mastery",
         "description": "Advanced Redux techniques with Redux Toolkit.",
         "instructor": "Jane Smith"
+      },
+      {
+        "id": 3,
+        "title": "JavaScript Fundamentals",
+        "description": "Understand the core concepts of JavaScript.",
+        "instructor": "Alice Johnson"
+      },
+      {
+        "id": 4,
+        "title": "CSS for Responsive Design",
+        "description": "Learn how to create responsive layouts using CSS.",
+        "instructor": "Bob Lee"
+      },
+      {
+        "id": 5,
+        "title": "Node.js and Express",
+        "description": "Build server-side applications using Node.js and Express.",
+        "instructor": "Charlie Brown"
+      },
+      {
+        "id": 6,
+        "title": "Introduction to TypeScript",
+        "description": "Learn how to use TypeScript with JavaScript.",
+        "instructor": "Diana Prince"
+      },
+      {
+        "id": 7,
+        "title": "Testing React Applications",
+        "description": "Master testing techniques for React applications.",
+        "instructor": "Ethan Hunt"
+      },
+      {
+        "id": 8,
+        "title": "Building RESTful APIs",
+        "description": "Create RESTful APIs using Node.js and Express.",
+        "instructor": "Fiona Gallagher"
+      },
+      {
+        "id": 9,
+        "title": "GraphQL Basics",
+        "description": "Learn the fundamentals of GraphQL and how to use it.",
+        "instructor": "George Lucas"
+      },
+      {
+        "id": 10,
+        "title": "Advanced React Patterns",
+        "description": "Explore advanced patterns and techniques in React.",
+        "instructor": "Hannah Montana"
+      },
+      {
+        "id": 11,
+        "title": "State Management in React",
+        "description": "Deep dive into state management solutions in React.",
+        "instructor": "Ivy League"
+      },
+      {
+        "id": 12,
+        "title": "Deploying React Applications",
+        "description": "Learn how to deploy your React applications to production.",
+        "instructor": "Jack Sparrow"
       }
     ]
   }
