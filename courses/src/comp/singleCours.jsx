@@ -7,11 +7,13 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Input } from '@/components/ui/Input'
 import { Label } from '@/components/ui/Label'
 import { Textarea } from '@/components/ui/Textarea'
+import { useToast } from "@/hooks/use-toast"
 
 const SingleCours = ({ course }) => {
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const [updatedCourse, setUpdatedCourse] = useState({ title: course.title, description: course.description })
+  const { toast } = useToast()
 
   const handleUpdate = () => {
     dispatch(updateCourse({ id: course.id, ...updatedCourse }))
@@ -69,7 +71,13 @@ const SingleCours = ({ course }) => {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="button" onClick={handleUpdate} className="bg-blue-600 text-white hover:bg-blue-700 transition duration-200">
+                <Button  onClick={() => {
+                  handleUpdate(); 
+                  toast({
+                    title: "Course Updated",
+                    description: "success",
+                  })
+                }} className="bg-black text-white hover:bg-gray-900 transition duration-200">
                   Save changes
                 </Button>
               </DialogFooter>
