@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const courseSlice = createSlice({
     name : 'courses',
     initialState : {
-        courses : []
+        courses : [],
+        mode : false,
     },
     reducers: {
         setCourse(state, action){
@@ -21,8 +22,11 @@ const courseSlice = createSlice({
         updateCourse(state, action){
             const index = state.courses.findIndex(course => course.id === action.payload.id)
             state.courses[index] = action.payload
+        },
+        toggleMode(state){
+            state.mode = !state.mode
         }
     }
 })
-export const { setCourse, addCourse, removeCourse, updateCourse } = courseSlice.actions
+export const { setCourse, addCourse, removeCourse, updateCourse, toggleMode } = courseSlice.actions
 export default courseSlice.reducer

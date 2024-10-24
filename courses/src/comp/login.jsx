@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { useForm, useFormContext } from 'react-hook-form';
 import { login } from '../redux/authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // const useFormField = (name) => {
 //   const { getFieldState } = useFormContext();
@@ -26,6 +26,7 @@ const FormMessage = ({ children, className }) => (
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch();
+  const mode = useSelector(state=> state.courses.mode)
 
   // Function to handle form submission
   const onSubmit = (data) => {
@@ -33,8 +34,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-start py-10 m-10 justify-center h-auto  bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div className={` ${mode ? '' : 'dark'} flex items-start py-10 m-10 justify-center h-auto rounded-md border border-primary  bg-background`}>
+      <div className="bg-background text-primary p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign in</h2>
         <Form onSubmit={handleSubmit(onSubmit)}>
           
@@ -59,7 +60,7 @@ const Login = () => {
             {errors.password && <FormMessage className='text-red-500'>{errors.password.message}</FormMessage>}
           </FormItem>
           <Button
-            className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={handleSubmit((data) => dispatch(login(data)))}
           >
             Login

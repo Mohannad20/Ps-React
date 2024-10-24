@@ -21,9 +21,10 @@ const Home = () => {
             })
             .catch(err => console.log('Error fetching courses:', err));
     }, [dispatch]);
+    const mode = useSelector(state=> state.courses.mode)
 
     return (
-        <div className="container mx-auto px-4">
+        <div className={` ${mode ? '' : 'dark'} container mx-auto px-4`}>
             {!isLogged ? (
                 <Login/>
                 

@@ -8,20 +8,31 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar"; // Ensure the path is correct
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, BookAIcon, ChevronDown } from "lucide-react";
+import { Bell, BookAIcon, ChevronDown, Moon, SunDim } from "lucide-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMode } from '../redux/courseSlice';
+import { Button } from '@/components/ui/Button'
+
 
 export default function Navbar() {
+  const mode = useSelector(state=> state.courses.mode)
+  console.log(mode);
+  
+  const dispatch = useDispatch()
+
   return (
-    <nav className="bg-gray-100 border-b border-e rounded-lg w-fit px-20 flex mx-auto mt-2">
+    <div className={mode ? "" : "dark"}>
+
+      <nav className={` bg-background text-primary border-b border-e rounded-lg w-fit px-20 flex mx-auto `}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-10">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="text-2xl font-bold text-primary cursor-pointer">Course</span>
+            <span className="text-2xl font-bold text-primary cursor-pointer">CourseApp</span>
           </div>
 
           {/* Menu Items */}
-          <Menubar className="hidden sm:flex bg-gray-200 ">
+          <Menubar className="hidden sm:flex bg-background ">
             <MenubarMenu>
               <MenubarTrigger className='cursor-pointer' >Add a course</MenubarTrigger>
               <MenubarContent>
@@ -43,49 +54,40 @@ export default function Navbar() {
 
               dkfj
               </MenubarTrigger>
-            {/* <MenubarContent>
-              <MenubarItem>kdfj</MenubarItem>
-            </MenubarContent> */}
             </MenubarMenu>
-            {/* <MenubarMenu>
-              <MenubarTrigger>About</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem>Our Story</MenubarItem>
-                <MenubarItem>Team</MenubarItem>
-                <MenubarItem>Careers</MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-            <MenubarMenu>
-              <MenubarTrigger>Contact</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem>Support</MenubarItem>
-                <MenubarItem>Sales</MenubarItem>
-                <MenubarItem>Partnership</MenubarItem>
-              </MenubarContent>
-            </MenubarMenu> */}
           </Menubar>
 
           {/* User Profile */}
           <div className="flex items-center">
-            <button className="p-2 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-              <span className="sr-only">View notifications</span>
-              <BookAIcon className="h-6 w-6 text-black" aria-hidden="true" />
-            </button>
+            <Button className='mx-3 bg-background text-primary'>
+              <BookAIcon className="h-6 w-6 " aria-hidden="true" />
+            </Button>
             <div className="ml-3 relative">
               <div className="flex items-center">
                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <div className='cursor-pointer flex '>
-                <span className="hidden md:flex ml-2 text-sm font-medium text-gray-700 ">Admin</span>
-                <ChevronDown className="ml-1 h-4 w-4 text-gray-400" aria-hidden="true" />
+                <div className='cursor-pointer flex items-center'>
+                <span className="hidden md:flex mx-2 text-sm font-medium text-primary">Admin</span>
+                <ChevronDown className="ml-1 h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
               </div>
             </div>
+            <Button className='mx-3 bg-background text-primary '>
+              <Bell className="h-6 w-6 " aria-hidden="true" />
+            </Button>
+            <Button onClick={() => dispatch(toggleMode())} className='mx-3 bg-background text-primary'>
+              {mode ? 
+              <Moon className="h-6 w-6 " aria-hidden="true" />
+              :
+              <SunDim className="h-6 w-6" aria-hidden="true" />
+              }
+            </Button>
           </div>
         </div>
       </div>
     </nav>
+    </div>
   );
 }
