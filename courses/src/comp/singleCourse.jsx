@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/Label'
 import { Textarea } from '@/components/ui/Textarea'
 import { useToast } from "@/hooks/use-toast"
 
-const SingleCours = ({ course }) => {
+const SingleCourse = ({ course }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [updatedCourse, setUpdatedCourse] = useState({ title: course.title, description: course.description });
@@ -36,13 +36,13 @@ const SingleCours = ({ course }) => {
             </p>
           </CardContent>
           <CardFooter className='p-4 gap-3'>
-            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <Dialog open={isOpen} onOpenChange={setIsOpen} className={`bg-background transition duration-300 ${mode? '': 'dark'}`}>
               <DialogTrigger asChild>
                 <Button className="transition duration-200">
                   Edit
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px] p-6 bg-gray-100 rounded-lg shadow-lg">
+              <DialogContent className="sm:max-w-[425px] p-6 rounded-lg shadow-lg">
                 <DialogHeader>
                   <DialogTitle className="text-lg font-semibold">Edit Course</DialogTitle>
                   <DialogDescription className="text-sm text-gray-600">
@@ -80,7 +80,7 @@ const SingleCours = ({ course }) => {
                       title: "Course Updated",
                       description: "success",
                     })
-                  }} className="bg-black text-white hover:bg-gray-900 transition duration-200">
+                  }} className="bg-primary text-primary-foreground hover:bg-primary transition duration-200">
                     Save changes
                   </Button>
                 </DialogFooter>
@@ -96,4 +96,4 @@ const SingleCours = ({ course }) => {
   );
 }
 
-export default SingleCours
+export default SingleCourse

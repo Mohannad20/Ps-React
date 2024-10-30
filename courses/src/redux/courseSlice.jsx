@@ -4,7 +4,7 @@ const courseSlice = createSlice({
     name : 'courses',
     initialState : {
         courses : [],
-        mode : false,
+        mode : true,
     },
     reducers: {
         setCourse(state, action){

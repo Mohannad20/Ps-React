@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Button } from "@/components/ui/button"; // This import is not used in the current code
-import SingleCours from './singleCours';
+import SingleCourse from './singleCourse';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCourse, setCourse } from '../redux/courseSlice';
+import { addCourse, setCourse, removeCourse } from '../redux/courseSlice'; // Added removeCourse import
 import axios from 'axios'
 import Login from './login';
 
@@ -24,21 +23,21 @@ const Home = () => {
     const mode = useSelector(state=> state.courses.mode)
 
     return (
-        <div className={` ${mode ? '' : 'dark'} container mx-auto px-4`}>
+        <div className={` ${mode ? '' : 'dark'} container mx-auto my-0 px-4 transition duration-300`}>
             {!isLogged ? (
                 <Login/>
                 
             ):
             (
                 courses.length > 0 ? (
-                    <div className="my-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="py-8 grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {courses.map(course => (
-                            <SingleCours key={course.id} course={course} />
+                            <SingleCourse key={course.id} course={course} />
                         )
                     )}
                     </div>
                 ) : (
-                    <div className="text-center mt-5 text-gray-500">No courses available</div>
+                    <div className="my-0 text-gray-500 flex justify-center items-center h-screen">No courses available</div>
                 )
             )
             }

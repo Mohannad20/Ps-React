@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "email": "john.doe@example.com",
+      "username": "johndoe",
+      "password": "password123",
+      "role": "admin",
+      "created_at": "2023-10-01T10:00:00Z"
+    },
+    {
+      "email": "jane.smith@example.com",
+      "username": "janesmith",
+      "password": "password456",
+      "role": "user",
+      "created_at": "2023-10-02T11:30:00Z"
+    },
+    {
+      "email": "alice.jones@example.com",
+      "username": "alicejones",
+      "password": "password789",
+      "role": "user",
+      "created_at": "2023-10-03T12:45:00Z"
+    },
+    {
+      "email": "bob.brown@example.com",
+      "username": "bobbrown",
+      "password": "password321",
+      "role": "admin",
+      "created_at": "2023-10-04T14:20:00Z"
+    }
+  ]
+}
