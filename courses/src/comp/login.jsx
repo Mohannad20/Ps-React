@@ -24,16 +24,16 @@ const Login = () => {
   const authError = useSelector((state) => state.auth.error);
 
   // Function to handle form submission
-  const onSubmit = (data) => {
-    dispatch(fetchUsers(data))
-      .unwrap()
-      .then(() => {
-        navigate('/');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const onSubmitHandle = (data) => {
+  //   dispatch(fetchUsers(data))
+  //     .unwrap()
+  //     .then(() => {
+  //       navigate('/');
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div
@@ -43,7 +43,7 @@ const Login = () => {
     >
       <div className="bg-background text-primary mt-20 p-8 rounded shadow-md w-full max-w-md border border-primary">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign in</h2>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit}>
           <FormItem className="mb-4">
             <Label>Username</Label>
             <Input
@@ -83,7 +83,7 @@ const Login = () => {
           >
             Login
           </Button>
-          <Link to="/logout">
+          <Link to="/signup">
             <Button variant="link">Sign up</Button>
           </Link>
         </Form>

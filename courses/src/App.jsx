@@ -5,7 +5,7 @@ import Home from './comp/home'
 import { Toaster } from "./components/ui/toaster"
 import { useSelector } from 'react-redux'
 import AddForm from './comp/addForm'
-import Logout from './comp/logout'
+import Signup from './comp/signup'
 
 const App = () => {
   const mode = useSelector(state => state.courses.mode)
@@ -18,7 +18,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addForm" element={<AddForm/>} />
-          <Route path='/logout' element={<Logout/>} />
+          <Route path='/signup' element={<Signup/>} />
         </Routes>
       </BrowserRouter>
     </div>
