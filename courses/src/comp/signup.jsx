@@ -17,7 +17,7 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    // getValues,
   } = useForm();
   const mode = useSelector((state) => state.courses.mode);
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const Signup = () => {
       <div className="bg-background text-primary mt-20 p-8 rounded shadow-md w-full max-w-md border border-primary">
         <h2 className="text-2xl mb-6 font-bold text-center">Sign up</h2>
 
-        <Form className="w-fit p-4" onSubmit={handleSubmit(onSubmitHandle)}>
+        <Form >
           <FormItem className="mb-1">
             <Label>username</Label>
             <Input
@@ -106,7 +106,7 @@ const Signup = () => {
             )}
           </FormItem>
 
-          <Button type="submit">Sign up</Button>
+          <Button type="submit" onClick={handleSubmit(onSubmitHandle)}>Sign up</Button>
 
           <Button variant="link" onClick={() => navigate("/")}>
             Sign in

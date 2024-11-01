@@ -23,17 +23,9 @@ const Login = () => {
   const mode = useSelector((state) => state.courses.mode);
   const authError = useSelector((state) => state.auth.error);
 
-  // Function to handle form submission
-  // const onSubmitHandle = (data) => {
-  //   dispatch(fetchUsers(data))
-  //     .unwrap()
-  //     .then(() => {
-  //       navigate('/');
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const onSubmit = (data) => {
+    dispatch(fetchUsers(data));
+  };
 
   return (
     <div
@@ -43,7 +35,7 @@ const Login = () => {
     >
       <div className="bg-background text-primary mt-20 p-8 rounded shadow-md w-full max-w-md border border-primary">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign in</h2>
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <FormItem className="mb-4">
             <Label>Username</Label>
             <Input
@@ -76,10 +68,8 @@ const Login = () => {
           </FormItem>
           <Button
             className="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-            // onClick={() => dispatch(login(data))}
-            onClick={handleSubmit((data) => dispatch(fetchUsers(data)))}
-
+            type="button"
+            onClick={handleSubmit(onSubmit)}
           >
             Login
           </Button>

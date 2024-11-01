@@ -27,8 +27,8 @@ const SingleCourse = ({ course }) => {
       <div className={mode ? '' : 'dark'}>
         <Card className='w-72 mx-auto bg-card text-primary shadow-lg rounded-lg overflow-hidden'>
           <CardHeader className='bg-card-foreground p-4'>
-            <CardTitle className='text-xl font-bold text-primary-foreground'>{course.title}</CardTitle>
-            <CardDescription className='text-secondary-foreground'>{course.instructor}</CardDescription>
+            <CardTitle className='text-xl font-bold text-primary'>{course.title}</CardTitle>
+            <CardDescription className='text-secondary'>{course.instructor}</CardDescription>
           </CardHeader>
           <CardContent className='p-4'>
             <p className='text-foreground'>

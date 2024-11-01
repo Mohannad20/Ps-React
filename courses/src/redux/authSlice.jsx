@@ -5,7 +5,7 @@ export const fetchUsers = createAsyncThunk(
     'fetchUsers',
     async({ username, password }, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:3000/users');
+            const response = await axios.get('http://localhost:3003/users');
             const users = response.data; // Access the users array
             
             console.log('Fetched users:', users);
@@ -31,10 +31,10 @@ export const addUserToServer = createAsyncThunk(
     'addUserToServer',
     async(user, rejectWithValue) => {
         try {
-            const response = await axios.post('http://localhost:3000/users', user);
+            const response = await axios.post('http://localhost:3003/users', user);
             return response.data;
         } catch (error) {
-            log.error(error);
+            console.error(error);
             return rejectWithValue(error.response.data)
         }
     }

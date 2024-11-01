@@ -13,7 +13,7 @@ const Home = () => {
     
 
     useEffect(() => {
-        axios.get('http://localhost:3001/courses')
+        axios.get('http://localhost:3002/courses')
             .then(res => {
                 dispatch(setCourse(res.data));  // Set the entire course list
                 console.log(res.data);
@@ -23,7 +23,7 @@ const Home = () => {
     const mode = useSelector(state=> state.courses.mode)
 
     return (
-        <div className={` ${mode ? '' : 'dark'} container mx-auto my-0 px-4 transition duration-300`}>
+        <div className={` ${mode ? '' : 'dark'} container mx-auto my-0 px-4 transition duration-300 min-h-screen`}>
             {!isLogged ? (
                 <Login/>
                 

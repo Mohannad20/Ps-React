@@ -18,6 +18,9 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   const mode = useSelector(state=> state.courses.mode)
   console.log(mode);
+  const isLogged = useSelector(state => state.auth.isLogged)
+  const user = useSelector(state => state.auth.user)
+  console.log(user);
   
   const dispatch = useDispatch()
 
@@ -62,6 +65,7 @@ export default function Navbar() {
             <Button className='mx-3 bg-background text-primary hover:bg-secondary'>
               <BookAIcon className="h-6 w-6 " aria-hidden="true" />
             </Button>
+            {isLogged &&
             <div className="ml-3 relative">
               <div className="flex items-center hover:bg-secondary p-1 rounded">
                 <Avatar>
@@ -69,11 +73,12 @@ export default function Navbar() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className='cursor-pointer flex items-center'>
-                <span className="hidden md:flex mx-2 text-sm font-medium text-primary">Admin</span>
+                <span className="hidden md:flex mx-2 text-sm font-medium text-primary">{user.username}</span>
                 <ChevronDown className="ml-1 h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
               </div>
             </div>
+            }
             {/* <Button className='mx-3 bg-background text-primary '>
               <Bell className="h-6 w-6 " aria-hidden="true" />
             </Button> */}
