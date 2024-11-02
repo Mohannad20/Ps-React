@@ -48,7 +48,7 @@ export const AddProduct = () => {
     setErrors({})
     if (handleValidate()) { 
       navigate("/");
-      console.log('successfully submited');
+      console.log('successfully submitted');
       dispatch(addProduct(productInfos))
     }
   };
