@@ -1,31 +1,35 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Login from './login';
-import { Form, FormItem } from '../components/ui/form';
-import { Label } from '../components/ui/label';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
-import { useForm } from 'react-hook-form';
-import { addCoursetoApi } from '../redux/courseSlice';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Login from "./login";
+import { Form, FormItem } from "../components/ui/form";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { useForm } from "react-hook-form";
+import { addCourseToApi } from "../redux/courseSlice";
+import { useNavigate } from "react-router-dom";
 
 const FormMessage = ({ children, className }) => (
   <div className={className}>{children}</div>
 );
 
 const AddForm = () => {
-  const isLogged = useSelector(state => state.auth.isLogged);
-  const mode = useSelector(state => state.courses.mode);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const isLogged = useSelector((state) => state.auth.isLogged);
+  const mode = useSelector((state) => state.courses.mode);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onhandleSubmit = async (data) => {
+  const onHandleSubmit = async (data) => {
     try {
-      await dispatch(addCoursetoApi(data)).unwrap();
-      navigate('/');
+      await dispatch(addCourseToApi(data)).unwrap();
+      navigate("/");
     } catch (error) {
-      console.log('Error adding course:', error);
+      console.log("Error adding course:", error);
     }
   };
 
@@ -46,7 +50,7 @@ const AddForm = () => {
               <Input
                 type="text"
                 name="title"
-                {...register('title', { required: 'Title is required' })}
+                {...register("title", { required: "Title is required" })}
               />
               {errors.title && (
                 <FormMessage className="text-red-500">
@@ -59,7 +63,9 @@ const AddForm = () => {
               <Input
                 type="text"
                 name="description"
-                {...register('description', { required: 'Description is required' })}
+                {...register("description", {
+                  required: "Description is required",
+                })}
               />
               {errors.description && (
                 <FormMessage className="text-red-500">
@@ -72,7 +78,9 @@ const AddForm = () => {
               <Input
                 type="text"
                 name="instructor"
-                {...register('instructor', { required: 'Instructor is required' })}
+                {...register("instructor", {
+                  required: "Instructor is required",
+                })}
               />
               {errors.instructor && (
                 <FormMessage className="text-red-500">
@@ -80,7 +88,9 @@ const AddForm = () => {
                 </FormMessage>
               )}
             </FormItem>
-            <Button type="submit" onClick={handleSubmit(onhandleSubmit)}>Add Course</Button>
+            <Button type="submit" onClick={handleSubmit(onHandleSubmit)}>
+              Add Course
+            </Button>
           </Form>
         </div>
       )}

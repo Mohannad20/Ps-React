@@ -2,19 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-export const addCoursetoApi = createAsyncThunk(
-  "courses/addCoursetoApi",
+export const addCourseToApi = createAsyncThunk(
+  "courses/addCourseToApi",
   async (course, { rejectWithValue }) => {
     try {
-      console.log("Sending course data to API:", course); // Debug log
+      // console.log("Sending course data to API:", course); // Debug log
       const response = await axios.post(
         "http://localhost:3002/courses",
         course
       );
-      console.log("Response from API:", response.data); // Debug log
+      // console.log("Response from API:", response.data); // Debug log
       return response.data;
     } catch (error) {
-      console.error("Error in addCoursetoApi:", error); // Debug log
+      // console.error("Error in addCourseToApi:", error); // Debug log
       return rejectWithValue(error.response.data);
     }
   }
@@ -52,15 +52,14 @@ const courseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addCoursetoApi.fulfilled, (state, action) => {
+      .addCase(addCourseToApi.fulfilled, (state, action) => {
         state.courses.push(action.payload);
       })
-      .addCase(addCoursetoApi.rejected, (state, action) => {
+      .addCase(addCourseToApi.rejected, (state, action) => {
         state.error = action.payload;
       });
   },
 });
 
-export const { setCourse, addCourse, removeCourse, updateCourse, toggleMode } =
-  courseSlice.actions;
+export const { setCourse, addCourse, removeCourse, updateCourse, toggleMode } = courseSlice.actions;
 export default courseSlice.reducer;

@@ -7,7 +7,6 @@ import { fetchUsers, login } from "../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-// Ensure FormMessage component is correctly implemented
 const FormMessage = ({ children, className }) => (
   <div className={className}>{children}</div>
 );
@@ -19,7 +18,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const mode = useSelector((state) => state.courses.mode);
   const authError = useSelector((state) => state.auth.error);
 

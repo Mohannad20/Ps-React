@@ -9,14 +9,11 @@ const Home = () => {
     const dispatch = useDispatch();
     const courses = useSelector((state) => state.courses.courses);
     const isLogged = useSelector(state => state.auth.isLogged)
-    console.log(isLogged);
-    
 
     useEffect(() => {
         axios.get('http://localhost:3002/courses')
             .then(res => {
-                dispatch(setCourse(res.data));  // Set the entire course list
-                console.log(res.data);
+                dispatch(setCourse(res.data));
             })
             .catch(err => console.log('Error fetching courses:', err));
     }, [dispatch]);
@@ -26,7 +23,6 @@ const Home = () => {
         <div className={` ${mode ? '' : 'dark'} container mx-auto my-0 px-4 transition duration-300 min-h-screen`}>
             {!isLogged ? (
                 <Login/>
-                
             ):
             (
                 courses.length > 0 ? (

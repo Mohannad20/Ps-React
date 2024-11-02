@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormItem } from "../components/ui/form";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "../components/ui/input";
@@ -17,25 +17,26 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
-    // getValues,
   } = useForm();
   const mode = useSelector((state) => state.courses.mode);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [passMatch, setPassMatch] = useState('');
 
   const onSubmitHandle = async (data) => {
     const { cpassword, ...userData } = data;
     if (data.password !== cpassword) {
-      alert("Passwords do not match");
+      setPassMatch('Passwords do not match');
       return;
     }
+    setPassMatch('');
     const userWithTimestamp = {
       ...userData,
       created_at: new Date().toISOString(),
     };
     try {
       await dispatch(addUserToServer(userWithTimestamp)).unwrap();
-      navigate("/"); // Navigate to the sign-in page after successful signup
+      navigate("/");
     } catch (error) {
       console.error("Failed to sign up:", error);
     }
@@ -49,8 +50,7 @@ const Signup = () => {
     >
       <div className="bg-background text-primary mt-20 p-8 rounded shadow-md w-full max-w-md border border-primary">
         <h2 className="text-2xl mb-6 font-bold text-center">Sign up</h2>
-
-        <Form >
+        <Form>
           <FormItem className="mb-1">
             <Label>username</Label>
             <Input
@@ -99,14 +99,16 @@ const Signup = () => {
                 required: "confirm password is required",
               })}
             />
-            {errors.cpassword && (
+            {passMatch && (
               <FormMessage className="text-red-500">
-                {errors.cpassword.message}
+                {passMatch}
               </FormMessage>
             )}
           </FormItem>
 
-          <Button type="submit" onClick={handleSubmit(onSubmitHandle)}>Sign up</Button>
+          <Button type="submit" onClick={handleSubmit(onSubmitHandle)}>
+            Sign up
+          </Button>
 
           <Button variant="link" onClick={() => navigate("/")}>
             Sign in

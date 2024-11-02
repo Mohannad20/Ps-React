@@ -1,65 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-  font-family: Satoshi;
 
+* {
+  font-family: Satoshi;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 24.6 95% 53.1%;
+    /* Light Theme */
+    --background: 210 10% 98%; /* Light gray */
+    --foreground: 220 15% 20%; /* Darker gray for text */
+    --card: 0 0% 100%; /* White for cards */
+    --card-foreground: 220 15% 20%; /* Dark gray text on cards */
+    --popover: 0 0% 100%; /* White for popovers */
+    --popover-foreground: 220 15% 20%; /* Dark gray text on popovers */
+    
+    /* Primary Colors */
+    --primary: 210 90% 55%; /* Main color for large areas */
+    --primary-foreground: 0 0% 100%; /* White text on primary background */
+    
+    /* Secondary Colors */
+    --secondary: 42 70% 65%; /* Golden tan for highlights */
+    --secondary-foreground: 220 15% 20%; /* Dark gray text on secondary */
+    
+    /* Accent Colors */
+    --accent: 12 76% 61%; /* Accent orange for buttons and links */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+    
+    /* Utility Colors */
+    --muted: 210 10% 92%; /* Light gray for muted backgrounds */
+    --muted-foreground: 220 10% 30%; /* Muted dark text */
+    --destructive: 0 84.2% 60.2%; /* Destructive actions */
+    --destructive-foreground: 60 9.1% 97.8%; /* Light color for text on destructive */
+    --border: 210 15% 85%; /* Light gray borders */
+    --input: 210 15% 85%; /* Input fields */
+    --ring: 210 90% 55%; /* Ring for focus */
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    
+    /* Chart Colors */
+    --chart-1: 180 60% 50%;
+    --chart-2: 140 45% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 270 50% 60%;
+    --chart-5: 310 70% 55%;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 60 9.1% 97.8%;
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
-    --primary: 20.5 90.2% 48.2%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
-    --input: 12 6.5% 15.1%;
-    --ring: 20.5 90.2% 48.2%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    /* Dark Theme */
+    --background: 220 15% 10%; /* Dark gray */
+    --foreground: 210 10% 98%; /* Near-white for text */
+    --card: 220 15% 10%; /* Dark card background */
+    --card-foreground: 210 10% 98%; /* Light text on dark cards */
+    --popover: 220 15% 10%; /* Dark background for popovers */
+    --popover-foreground: 210 10% 98%; /* Light text on popovers */
+    
+    /* Primary Colors */
+    --primary: 210 90% 60%; /* Bright primary for dark mode */
+    --primary-foreground: 0 0% 100%; /* White on primary */
+    
+    /* Secondary Colors */
+    --secondary: 42 60% 50%; /* Softer tan in dark mode */
+    --secondary-foreground: 210 10% 98%; /* Light text on secondary */
+    
+    /* Accent Colors */
+    --accent: 12 76% 61%; /* Accent color for dark mode */
+    --accent-foreground: 0 0% 100%; /* White on accent */
+    
+    /* Utility Colors */
+    --muted: 220 10% 25%; /* Muted background for dark mode */
+    --muted-foreground: 210 10% 98%; /* Light text on muted background */
+    --destructive: 0 72.2% 50.6%; /* Destructive action */
+    --destructive-foreground: 210 10% 98%; /* Light text */
+    --border: 220 15% 25%; /* Border for dark mode */
+    --input: 220 15% 25%; /* Input for dark mode */
+    --ring: 210 90% 60%; /* Ring color */
   }
 }
 
